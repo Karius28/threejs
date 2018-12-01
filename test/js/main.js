@@ -2,6 +2,7 @@ window.addEventListener('DOMContentLoaded', init);
 function init() {
     // text
     let globalFont = null;
+    let globalText = null;
 
     // ポリフィルを使用
     const polyfill = new WebVRPolyfill();
@@ -155,5 +156,9 @@ function init() {
         text.position.y = 100;
         text.position.z = -300;
         scene.add(text);
+        if(globalText) {
+            scene.remove(globalText);
+        }
+        globalText = text;
     }
 }
