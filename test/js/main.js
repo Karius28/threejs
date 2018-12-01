@@ -127,16 +127,16 @@ function init() {
         box.matrixWorldNeedsUpdate = true;
         box.visible = true;
 
-        if(gamepad.buttons[0].pressed) {
+        if(contoroller.buttons[0].pressed) {
             box.position.x = -1;
         }
-        if(gamepad.buttons[1].pressed) {
+        if(contoroller.buttons[1].pressed) {
             box.position.y = -1;
         }
-        if(gamepad.buttons[2].pressed) {
+        if(contoroller.buttons[2].pressed) {
             box.position.x = 1;
         }
-        if(gamepad.buttons[3].pressed) {
+        if(contoroller.buttons[3].pressed) {
             box.position.y = 1;
         }
 
