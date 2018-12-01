@@ -144,7 +144,6 @@ function init() {
             text.geometry.parameters.text = time;
             scene.add(text.position.z);
             console.log(text.geometry.parameters.text);
-            text.position.z -= 1;
         }
         // 立方体を動かす
         const length = boxList.length;
