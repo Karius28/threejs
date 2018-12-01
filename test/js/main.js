@@ -89,26 +89,8 @@ function init() {
         const loader = new THREE.FontLoader();
         // フォントのロード
         loader.load( 'fonts/optimer_regular.typeface.json', function ( font ) {
+            setText('text',font);
             // ここにフォントを読み込んだあとの処理を記述
-            let textGeometry = new THREE.TextGeometry( 'aaa', {
-                font: font,
-                size: 50.0,
-                height: 30,
-                curveSegments: 10,
-                bevelThickness: 3,
-                bevelSize: 1.0,
-                bevelEnabled: true
-            } );
-
-            console.log(navigator.getGamepads());
-            textGeometry.center();
-            const material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
-            text = new THREE.Mesh( textGeometry, material );
-            text.position.x = 100;
-            text.position.y = 100;
-            text.position.z = -300;
-            scene.add(text);
-            console.log(text.geometry.parameters.text);
         } );
     }
     // レンダラーにループ関数を登録
@@ -140,12 +122,6 @@ function init() {
     function tick() {
         time += 1;
         contoroller = navigator.getGamepads()[0];
-        if(text) {
-            text.geometry.parameters.text = time;
-            scene.add(text.position.z);
-            console.log(text.geometry.parameters.text);
-            text.position.z -= 1;
-        }
         // 立方体を動かす
         const length = boxList.length;
         for (let i = 0; i < length; i++) {
@@ -154,5 +130,26 @@ function init() {
         
         // レンダリング
         renderer.render(scene, camera);
+    }
+
+    function setText(text, font) {
+
+        let textGeometry = new THREE.TextGeometry( text, {
+            font: font,
+            size: 50.0,
+            height: 30,
+            curveSegments: 10,
+            bevelThickness: 3,
+            bevelSize: 1.0,
+            bevelEnabled: true
+        } );
+
+        textGeometry.center();
+        const material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
+        text = new THREE.Mesh( textGeometry, material );
+        text.position.x = 100;
+        text.position.y = 100;
+        text.position.z = -300;
+        scene.add(text);
     }
 }
