@@ -100,7 +100,7 @@ function init() {
             console.log(navigator.getGamepads());
             textGeometry.center();
             const material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
-            const text = new THREE.Mesh( textGeometry, material );
+            let text = new THREE.Mesh( textGeometry, material );
             text.position.x = 100;
             text.position.y = 100;
             text.position.z = 100;
