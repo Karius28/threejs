@@ -125,8 +125,8 @@ function init() {
         contoroller = navigator.getGamepads()[0];
         if(globalFont) {
             console.log(time)
-            setText(time,globalFont);
             scene.remove(globalText);
+            setText('text',globalFont);
         }
         // 立方体を動かす
         const length = boxList.length;
