@@ -123,15 +123,6 @@ function init() {
             if(contoroller.buttons[0].pressed) {
                 box.position.x = -1;
             }
-            if(contoroller.buttons[1].pressed) {
-                box.position.y = -1;
-            }
-            if(contoroller.buttons[2].pressed) {
-                box.position.x = 1;
-            }
-            if(contoroller.buttons[3].pressed) {
-                box.position.y = 1;
-            }
         }
 
 
