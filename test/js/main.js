@@ -142,6 +142,7 @@ function init() {
         contoroller = navigator.getGamepads()[0];
         if(text) {
             text.geometry.parameters.text = time;
+            scene.add(text);
             console.log(text.geometry.parameters.text);
         }
         // 立方体を動かす
