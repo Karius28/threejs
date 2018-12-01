@@ -88,8 +88,8 @@ function init() {
             // ここにフォントを読み込んだあとの処理を記述
             const textGeometry = new THREE.TextGeometry( 'ABC', {
                 font: font,
-                size: 10.0,
-                height: 5,
+                size: 100.0,
+                height: 30,
                 curveSegments: 10,
                 bevelThickness: 3,
                 bevelSize: 1.0,
