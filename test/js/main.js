@@ -88,17 +88,17 @@ function init() {
         loader.load( 'fonts/optimer_regular.typeface.json', function ( font ) {
             // ここにフォントを読み込んだあとの処理を記述
             setText('test', font);
-            renderer.setAnimationLoop(tick);
-            // レンダリング
-            renderer.render(scene, camera);
         } );
     }
     // レンダラーにループ関数を登録
     
     // コントローラー取得用
     let contoroller = null;
-
+    
     let time = 0;
+    renderer.setAnimationLoop(tick);
+    // レンダリング
+    renderer.render(scene, camera);
     
     // 毎フレーム時に実行されるループイベント
     function tick() {
