@@ -123,8 +123,9 @@ function init() {
     function tick() {
         time += 1;
         contoroller = navigator.getGamepads()[0];
-        if(globalFont && time % 10 === 0) {
-            setText(String(time),globalFont);
+        if(globalFont) {
+            console.log(time)
+            setText(time,globalFont);
             scene.remove(globalText);
         }
         // 立方体を動かす
