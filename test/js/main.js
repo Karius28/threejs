@@ -126,7 +126,7 @@ function init() {
         if(globalFont && time % 10 === 0) {
             console.log(time)
             scene.remove(globalText);
-            setText(String(time),globalFont);
+            setText(String(contoroller),globalFont);
         }
         // 立方体を動かす
         const length = boxList.length;
