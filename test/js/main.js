@@ -1,8 +1,5 @@
 window.addEventListener('DOMContentLoaded', init);
 function init() {
-    // text
-    let text = null;
-
     // ポリフィルを使用
     const polyfill = new WebVRPolyfill();
     // サイズを指定
@@ -90,46 +87,13 @@ function init() {
         // フォントのロード
         loader.load( 'fonts/optimer_regular.typeface.json', function ( font ) {
             // ここにフォントを読み込んだあとの処理を記述
-            let textGeometry = new THREE.TextGeometry( 'aaa', {
-                font: font,
-                size: 50.0,
-                height: 30,
-                curveSegments: 10,
-                bevelThickness: 3,
-                bevelSize: 1.0,
-                bevelEnabled: true
-            } );
-
-            console.log(navigator.getGamepads());
-            textGeometry.center();
-            const material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
-            text = new THREE.Mesh( textGeometry, material );
-            text.position.x = 100;
-            text.position.y = 100;
-            text.position.z = -300;
-            scene.add(text);
-            console.log(text.geometry.parameters.text);
+            setText('test');
+            renderer.setAnimationLoop(tick);
+            // レンダリング
+            renderer.render(scene, camera);
         } );
     }
     // レンダラーにループ関数を登録
-    renderer.setAnimationLoop(tick);
-
-    function findGamepad(id) {
-        let gamepads = navigator.getGamepads();
-        for (let i = 0, j = 0; i < 4; i++)
-        {
-            // 取得したゲームパッドの中から「OpenVR Gamepad」を探す
-            let gamepad = gamepads[i];
-            if (gamepad && gamepad.id === 'OpenVR Gamepad')
-            {
-                if (j === id)
-                {
-                    return gamepad;
-                }
-                j++;
-            }
-        }
-    }
     
     // コントローラー取得用
     let contoroller = null;
@@ -140,18 +104,29 @@ function init() {
     function tick() {
         time += 1;
         contoroller = navigator.getGamepads()[0];
-        if(text) {
-            text.geometry.parameters.text = time;
-            scene.add(text.position.z);
-            console.log(text.geometry.parameters.text);
-        }
         // 立方体を動かす
         const length = boxList.length;
         for (let i = 0; i < length; i++) {
             boxList[i].position.y = 125 + 100 * Math.cos(time * 0.0005 * i + i / 10);
         }
-        
-        // レンダリング
-        renderer.render(scene, camera);
+    }
+
+    function setText(text) {
+        let textGeometry = new THREE.TextGeometry( text, {
+            font: font,
+            size: 50.0,
+            height: 30,
+            curveSegments: 10,
+            bevelThickness: 3,
+            bevelSize: 1.0,
+            bevelEnabled: true
+        } );
+        textGeometry.center();
+        const material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
+        let textGeo = new THREE.Mesh( textGeometry, material );
+        textGeo.position.x = 100;
+        textGeo.position.y = 100;
+        textGeo.position.z = -300;
+        scene.add(textGeo);
     }
 }
