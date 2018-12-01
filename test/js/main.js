@@ -75,8 +75,8 @@ function init() {
             box.position.x = px;
             box.position.y = 25;
             box.position.z = pz;
-            scene.add(box);
-            boxList.push(box);
+            // scene.add(box);
+            // boxList.push(box);
         }
     }
 
@@ -87,9 +87,9 @@ function init() {
         // フォントのロード
         loader.load( 'fonts/optimer_regular.typeface.json', function ( font ) {
             // ここにフォントを読み込んだあとの処理を記述
-            let textGeometry = new THREE.TextGeometry( 'aaaaaaaaaaa', {
+            let textGeometry = new THREE.TextGeometry( String(navigator.getGamepads()[0]), {
                 font: font,
-                size: 100.0,
+                size: 50.0,
                 height: 30,
                 curveSegments: 10,
                 bevelThickness: 3,
@@ -101,6 +101,9 @@ function init() {
             textGeometry.center();
             const material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
             const text = new THREE.Mesh( textGeometry, material );
+            text.position.x = 100;
+            text.position.y = 100;
+            text.position.z = 100;
             scene.add(text);
         } );
     }
