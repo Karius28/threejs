@@ -120,7 +120,8 @@ function init() {
     function tick() {
         time += 1;
         contoroller = navigator.getGamepads()[0];
-        ext.geometry.parameters.text = contoroller;
+        text.geometry.parameters.text = contoroller;
+        console.log(text);
         // 立方体を動かす
         const length = boxList.length;
         for (let i = 0; i < length; i++) {
