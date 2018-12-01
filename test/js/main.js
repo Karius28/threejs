@@ -127,7 +127,10 @@ function init() {
     function tick() {
         time += 1;
         contoroller = navigator.getGamepads()[0];
-        scene.remove(globalText);
+        if(globalFont) {
+            setText('text',globalFont);
+            scene.remove(globalText);
+        }
         // 立方体を動かす
         const length = boxList.length;
         for (let i = 0; i < length; i++) {
