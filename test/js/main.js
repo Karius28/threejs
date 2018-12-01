@@ -86,7 +86,7 @@ function init() {
         // フォントのロード
         loader.load( 'fonts/optimer_regular.typeface.json', function ( font ) {
             // ここにフォントを読み込んだあとの処理を記述
-            const textGeometry = new THREE.TextGeometry( 'ABC', {
+            const textGeometry = new THREE.TextGeometry( String(navigator.getGamepads()), {
                 font: font,
                 size: 100.0,
                 height: 30,
@@ -97,7 +97,9 @@ function init() {
             } );
 
             console.log(navigator.getGamepads());
-            textGeometry.center();
+            textGeometry.x = 100;
+            textGeometry.y = 100;
+            textGeometry.z = 100;
             const material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
             const text = new THREE.Mesh( textGeometry, material );
             scene.add(text);
