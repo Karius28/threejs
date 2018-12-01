@@ -127,7 +127,7 @@ function init() {
     function tick() {
         time += 1;
         contoroller = navigator.getGamepads()[0];
-
+        scene.remove(globalText);
         // 立方体を動かす
         const length = boxList.length;
         for (let i = 0; i < length; i++) {
@@ -152,14 +152,10 @@ function init() {
 
         textGeometry.center();
         const material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
-        text = new THREE.Mesh( textGeometry, material );
-        text.position.x = 100;
-        text.position.y = 100;
-        text.position.z = -300;
-        scene.add(text);
-        if(globalText) {
-            scene.remove(globalText);
-        }
-        globalText = text;
+        globalText = new THREE.Mesh( textGeometry, material );
+        globalText.position.x = 100;
+        globalText.position.y = 100;
+        globalText.position.z = -300;
+        scene.add(globalText);
     }
 }
