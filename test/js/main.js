@@ -58,31 +58,31 @@ function init() {
     }
     const boxList = [];
     // 立方体を作成
-    {
-        // 立方体のジオメトリを作成
-        const geometry = new THREE.BoxGeometry(45, 45, 45);
-        // 立方体を複数作成しランダムに配置
-        const num = 60;
-        loop: for (let i = 0; i < num; i++) {
-            const px = Math.round((Math.random() - 0.5) * 19) * 50 + 25;
-            const pz = Math.round((Math.random() - 0.5) * 19) * 50 + 25;
-            for (let j = 0; j < i; j++) {
-                const box2 = boxList[j];
-                if(box2.position.x === px && box2.position.z === pz){
-                    i -= 1;
-                    continue loop;
-                }
-            }
-            // 立方体のマテリアルを作成
-            const material = new THREE.MeshStandardMaterial({color: 0x1000000 * Math.random(), roughness: 0.1, metalness: 0.5});
-            const box = new THREE.Mesh(geometry, material);
-            box.position.x = px;
-            box.position.y = 25;
-            box.position.z = pz;
-            scene.add(box);
-            boxList.push(box);
-        }
-    }
+    // {
+    //     // 立方体のジオメトリを作成
+    //     const geometry = new THREE.BoxGeometry(45, 45, 45);
+    //     // 立方体を複数作成しランダムに配置
+    //     const num = 60;
+    //     loop: for (let i = 0; i < num; i++) {
+    //         const px = Math.round((Math.random() - 0.5) * 19) * 50 + 25;
+    //         const pz = Math.round((Math.random() - 0.5) * 19) * 50 + 25;
+    //         for (let j = 0; j < i; j++) {
+    //             const box2 = boxList[j];
+    //             if(box2.position.x === px && box2.position.z === pz){
+    //                 i -= 1;
+    //                 continue loop;
+    //             }
+    //         }
+    //         // 立方体のマテリアルを作成
+    //         const material = new THREE.MeshStandardMaterial({color: 0x1000000 * Math.random(), roughness: 0.1, metalness: 0.5});
+    //         const box = new THREE.Mesh(geometry, material);
+    //         box.position.x = px;
+    //         box.position.y = 25;
+    //         box.position.z = pz;
+    //         scene.add(box);
+    //         boxList.push(box);
+    //     }
+    // }
 
     //文字を追加
     {
@@ -96,28 +96,21 @@ function init() {
     }
     // レンダラーにループ関数を登録
     renderer.setAnimationLoop(tick);
-
-    function findGamepad(id) {
-        let gamepads = navigator.getGamepads();
-        for (let i = 0, j = 0; i < 4; i++)
-        {
-            // 取得したゲームパッドの中から「OpenVR Gamepad」を探す
-            let gamepad = gamepads[i];
-            if (gamepad && gamepad.id === 'OpenVR Gamepad')
-            {
-                if (j === id)
-                {
-                    return gamepad;
-                }
-                j++;
-            }
-        }
-    }
     
     // コントローラー取得用
     let contoroller = null;
 
     let time = 0;
+
+    // 立方体のジオメトリを作成
+    const geometry = new THREE.BoxGeometry(45, 45, 45);
+    // 立方体のマテリアルを作成
+    const material = new THREE.MeshStandardMaterial({color: 0x1ffffff * Math.random(), roughness: 0.1, metalness: 0.5});
+    const box = new THREE.Mesh(geometry, material);
+    box.position.x = 0;
+    box.position.y = 0;
+    box.position.z = -300;
+    scene.add(box);
     
     // 毎フレーム時に実行されるループイベント
     function tick() {
