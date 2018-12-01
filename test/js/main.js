@@ -90,7 +90,11 @@ function init() {
         const loader = new THREE.FontLoader();
         // フォントのロード
         loader.load( 'fonts/optimer_regular.typeface.json', function ( font ) {
-            globalFont = font
+            globalFont = font;
+
+            if(globalFont) {
+                setText('text',globalFont);
+            }
             // ここにフォントを読み込んだあとの処理を記述
         } );
     }
@@ -124,9 +128,6 @@ function init() {
         time += 1;
         contoroller = navigator.getGamepads()[0];
 
-        if(globalFont) {
-            setText('text',globalFont);
-        }
         // 立方体を動かす
         const length = boxList.length;
         for (let i = 0; i < length; i++) {
