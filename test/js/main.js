@@ -131,10 +131,14 @@ function init() {
             if(pose.position !== null) box.position.fromArray.fromArray(pose.position);
             if (pose.orientation !== null) box.quaternion.fromArray(pose.orientation);
             if(contoroller.buttons[0].pressed) {
+                // タッチパネル
                 box2.position.x -= 1;
+                setText('touchpannel',globalFont);
             }
             if(contoroller.buttons[1].pressed) {
+                // トリガー
                 box2.position.y -= 1;
+                setText('toriger',globalFont);
             }
         }
 
@@ -155,6 +159,7 @@ function init() {
 
     function setText(text, font) {
 
+        scene.remove(globalText);
         let textGeometry = new THREE.TextGeometry( text, {
             font: font,
             size: 50.0,
