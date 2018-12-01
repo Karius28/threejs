@@ -105,7 +105,7 @@ function init() {
             text.position.y = 100;
             text.position.z = 100;
             scene.add(text);
-            console.log(text);
+            console.log(text.geometry.parameters.text);
         } );
     }
     // レンダラーにループ関数を登録
@@ -120,7 +120,7 @@ function init() {
     function tick() {
         time += 1;
         contoroller = navigator.getGamepads()[0];
-        
+        ext.geometry.parameters.text = contoroller;
         // 立方体を動かす
         const length = boxList.length;
         for (let i = 0; i < length; i++) {
