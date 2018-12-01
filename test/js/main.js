@@ -110,15 +110,15 @@ function init() {
     box.position.x = 0;
     box.position.y = 100;
     box.position.z = -300;
-    // scene.add(box);
+    scene.add(box);
 
     // 立方体のジオメトリを作成
     const geometry2 = new THREE.BoxGeometry(60, 60, 60);
     // 立方体のマテリアルを作成
     const material2 = new THREE.MeshStandardMaterial({color: 0x1ffffff * Math.random(), roughness: 0.1, metalness: 0.5});
     let box2 = new THREE.Mesh(geometry2, material2);
-    box2.position.x = 0;
-    box2.position.y = -100;
+    box2.position.x = -100;
+    box2.position.y = 100;
     box2.position.z = -300;
     scene.add(box2);
     
