@@ -1,6 +1,5 @@
 window.addEventListener('DOMContentLoaded', init);
 function init() {
-    console.log(navigator.getGamepads());
     // ポリフィルを使用
     const polyfill = new WebVRPolyfill();
     // サイズを指定
@@ -97,8 +96,9 @@ function init() {
                 bevelEnabled: true
             } );
 
+            console.log(navigator.getGamepads());
             textGeometry.center();
-            const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+            const material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
             const text = new THREE.Mesh( textGeometry, material );
             scene.add(text);
         } );
