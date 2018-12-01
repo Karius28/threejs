@@ -111,7 +111,6 @@ function init() {
     box.position.y = 100;
     box.position.z = -300;
     scene.add(box);
-    const material = new THREE.MeshStandardMaterial({color: 0x1ffffff * Math.random(), roughness: 0.1, metalness: 0.5});
     let box2 = new THREE.Mesh(geometry, material);
     box2.position.x = 0;
     box2.position.y = -100;
