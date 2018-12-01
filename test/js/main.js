@@ -97,8 +97,6 @@ function init() {
     
     let time = 0;
     renderer.setAnimationLoop(tick);
-    // レンダリング
-    renderer.render(scene, camera);
     
     // 毎フレーム時に実行されるループイベント
     function tick() {
@@ -110,7 +108,7 @@ function init() {
             boxList[i].position.y = 125 + 100 * Math.cos(time * 0.0005 * i + i / 10);
         }
     }
-
+    
     function setText(text, font) {
         let textGeometry = new THREE.TextGeometry( text, {
             font: font,
@@ -129,4 +127,6 @@ function init() {
         textGeo.position.z = -300;
         scene.add(textGeo);
     }
+    // レンダリング
+    renderer.render(scene, camera);
 }
