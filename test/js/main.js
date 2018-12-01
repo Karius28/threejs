@@ -132,11 +132,6 @@ function init() {
             if(contoroller.buttons[3].pressed) {
                 box.position.y = 1;
             }
-            // デバイスからの情報を元に姿勢を更新し、ルームスケールのマトリクスを掛けて最終的な姿勢にする
-            box.matrix.compose(box.position, box.quaternion, box.scale);
-            box.matrix.multiplyMatrices(box.standingMatrix, box.matrix);
-            box.matrixWorldNeedsUpdate = true;
-            box.visible = true;
         }
 
 
