@@ -75,8 +75,8 @@ function init() {
             box.position.x = px;
             box.position.y = 25;
             box.position.z = pz;
-            // scene.add(box);
-            // boxList.push(box);
+            scene.add(box);
+            boxList.push(box);
         }
     }
 
