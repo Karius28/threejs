@@ -110,7 +110,7 @@ function init() {
     box.position.x = 0;
     box.position.y = 100;
     box.position.z = -300;
-    scene.add(box);
+    // scene.add(box);
 
     // 立方体のジオメトリを作成
     const geometry2 = new THREE.BoxGeometry(60, 60, 60);
