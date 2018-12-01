@@ -1,5 +1,8 @@
 window.addEventListener('DOMContentLoaded', init);
 function init() {
+    // text
+    let text = null;
+
     // ポリフィルを使用
     const polyfill = new WebVRPolyfill();
     // サイズを指定
@@ -100,7 +103,7 @@ function init() {
             console.log(navigator.getGamepads());
             textGeometry.center();
             const material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
-            let text = new THREE.Mesh( textGeometry, material );
+            text = new THREE.Mesh( textGeometry, material );
             text.position.x = 100;
             text.position.y = 100;
             text.position.z = 100;
