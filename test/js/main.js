@@ -106,7 +106,7 @@ function init() {
             text = new THREE.Mesh( textGeometry, material );
             text.position.x = 100;
             text.position.y = 100;
-            text.position.z = 100;
+            text.position.z = -100;
             scene.add(text);
             console.log(text.geometry.parameters.text);
         } );
@@ -144,6 +144,7 @@ function init() {
             text.geometry.parameters.text = time;
             scene.add(text);
             console.log(text.geometry.parameters.text);
+            text.position.z -= 1;
         }
         // 立方体を動かす
         const length = boxList.length;
