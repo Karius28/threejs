@@ -29,6 +29,7 @@ function init() {
     cameraContainer.add(camera);
     scene.add(cameraContainer);
     cameraContainer.position.y = 100;
+    cameraContainer.position.z = -100;
     // 光源を作成
     {
         const spotLight = new THREE.SpotLight(0xFFFFFF, 4, 2000, Math.PI / 5, 0.2, 1.5);
@@ -97,9 +98,7 @@ function init() {
             } );
 
             console.log(navigator.getGamepads());
-            textGeometry.position.x = 100;
-            textGeometry.position.y = 100;
-            textGeometry.position.z = 100;
+            textGeometry.center();
             const material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
             const text = new THREE.Mesh( textGeometry, material );
             scene.add(text);
