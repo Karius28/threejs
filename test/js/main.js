@@ -113,6 +113,23 @@ function init() {
     }
     // レンダラーにループ関数を登録
     renderer.setAnimationLoop(tick);
+
+    function findGamepad(id) {
+        let gamepads = navigator.getGamepads();
+        for (let i = 0, j = 0; i < 4; i++)
+        {
+            // 取得したゲームパッドの中から「OpenVR Gamepad」を探す
+            let gamepad = gamepads[i];
+            if (gamepad && gamepad.id === 'OpenVR Gamepad')
+            {
+                if (j === id)
+                {
+                    return gamepad;
+                }
+                j++;
+            }
+        }
+    }
     
     // コントローラー取得用
     let contoroller = null;
@@ -124,9 +141,8 @@ function init() {
         time += 1;
         contoroller = navigator.getGamepads()[0];
         if(text) {
-            text.geometry.parameters.text = contoroller;
+            text.geometry.parameters.text = time;
         }
-        console.log(text);
         // 立方体を動かす
         const length = boxList.length;
         for (let i = 0; i < length; i++) {
