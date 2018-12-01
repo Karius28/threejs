@@ -106,7 +106,7 @@ function init() {
             text = new THREE.Mesh( textGeometry, material );
             text.position.x = 100;
             text.position.y = 100;
-            text.position.z = -100;
+            text.position.z = -300;
             scene.add(text);
             console.log(text.geometry.parameters.text);
         } );
