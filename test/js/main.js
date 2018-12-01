@@ -106,9 +106,9 @@ function init() {
     const geometry = new THREE.BoxGeometry(45, 45, 45);
     // 立方体のマテリアルを作成
     const material = new THREE.MeshStandardMaterial({color: 0x1ffffff * Math.random(), roughness: 0.1, metalness: 0.5});
-    const box = new THREE.Mesh(geometry, material);
+    let box = new THREE.Mesh(geometry, material);
     box.position.x = 0;
-    box.position.y = 0;
+    box.position.y = 100;
     box.position.z = -300;
     scene.add(box);
     
@@ -116,16 +116,18 @@ function init() {
     function tick() {
         time += 1;
         contoroller = navigator.getGamepads()[0];
-        if(globalFont && time % 10 === 0) {
-            console.log(time)
-            scene.remove(globalText);
-            setText(String(contoroller),globalFont);
-        }
+        const pose = contoroller.pose;
+        if(pose.position !== null) box.position.fromArray.fromArray(pose.position);
+        if (pose.orientation !== null) box.quaternion.fromArray(pose.orientation);
+        // if(globalFont && time % 20 === 0) {
+        //     scene.remove(globalText);
+        //     setText(String(contoroller),globalFont);
+        // }
         // 立方体を動かす
-        const length = boxList.length;
-        for (let i = 0; i < length; i++) {
-            boxList[i].position.y = 125 + 100 * Math.cos(time * 0.0005 * i + i / 10);
-        }
+        // const length = boxList.length;
+        // for (let i = 0; i < length; i++) {
+        //     boxList[i].position.y = 125 + 100 * Math.cos(time * 0.0005 * i + i / 10);
+        // }
         
         // レンダリング
         renderer.render(scene, camera);
