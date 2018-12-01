@@ -120,25 +120,25 @@ function init() {
             const pose = contoroller.pose;
             if(pose.position !== null) box.position.fromArray.fromArray(pose.position);
             if (pose.orientation !== null) box.quaternion.fromArray(pose.orientation);
+            if(contoroller.buttons[0].pressed) {
+                box.position.x = -1;
+            }
+            if(contoroller.buttons[1].pressed) {
+                box.position.y = -1;
+            }
+            if(contoroller.buttons[2].pressed) {
+                box.position.x = 1;
+            }
+            if(contoroller.buttons[3].pressed) {
+                box.position.y = 1;
+            }
+            // デバイスからの情報を元に姿勢を更新し、ルームスケールのマトリクスを掛けて最終的な姿勢にする
+            box.matrix.compose(box.position, box.quaternion, box.scale);
+            box.matrix.multiplyMatrices(box.standingMatrix, box.matrix);
+            box.matrixWorldNeedsUpdate = true;
+            box.visible = true;
         }
-        // デバイスからの情報を元に姿勢を更新し、ルームスケールのマトリクスを掛けて最終的な姿勢にする
-        box.matrix.compose(box.position, box.quaternion, box.scale);
-        box.matrix.multiplyMatrices(box.standingMatrix, box.matrix);
-        box.matrixWorldNeedsUpdate = true;
-        box.visible = true;
 
-        if(contoroller.buttons[0].pressed) {
-            box.position.x = -1;
-        }
-        if(contoroller.buttons[1].pressed) {
-            box.position.y = -1;
-        }
-        if(contoroller.buttons[2].pressed) {
-            box.position.x = 1;
-        }
-        if(contoroller.buttons[3].pressed) {
-            box.position.y = 1;
-        }
 
         // if(globalFont && time % 20 === 0) {
         //     scene.remove(globalText);
