@@ -87,7 +87,7 @@ function init() {
         // フォントのロード
         loader.load( 'fonts/optimer_regular.typeface.json', function ( font ) {
             // ここにフォントを読み込んだあとの処理を記述
-            let textGeometry = new THREE.TextGeometry( String(navigator.getGamepads()[0]), {
+            let textGeometry = new THREE.TextGeometry( 'aaa', {
                 font: font,
                 size: 50.0,
                 height: 30,
@@ -105,16 +105,21 @@ function init() {
             text.position.y = 100;
             text.position.z = 100;
             scene.add(text);
+            console.log(text);
         } );
     }
     // レンダラーにループ関数を登録
     renderer.setAnimationLoop(tick);
     
+    // コントローラー取得用
+    let contoroller = null;
+
     let time = 0;
     
     // 毎フレーム時に実行されるループイベント
     function tick() {
         time += 1;
+        contoroller = navigator.getGamepads()[0];
         
         // 立方体を動かす
         const length = boxList.length;
