@@ -87,7 +87,7 @@ function init() {
         // フォントのロード
         loader.load( 'fonts/optimer_regular.typeface.json', function ( font ) {
             // ここにフォントを読み込んだあとの処理を記述
-            setText('test');
+            setText('test', font);
             renderer.setAnimationLoop(tick);
             // レンダリング
             renderer.render(scene, camera);
@@ -111,7 +111,7 @@ function init() {
         }
     }
 
-    function setText(text) {
+    function setText(text, font) {
         let textGeometry = new THREE.TextGeometry( text, {
             font: font,
             size: 50.0,
