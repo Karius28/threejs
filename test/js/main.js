@@ -131,10 +131,10 @@ function init() {
             if(pose.position !== null) box.position.fromArray.fromArray(pose.position);
             if (pose.orientation !== null) box.quaternion.fromArray(pose.orientation);
             if(contoroller.buttons[0].pressed) {
-                box2.position.x = -1;
+                box2.position.x -= 1;
             }
             if(contoroller.buttons[1].pressed) {
-                box2.position.y = -1;
+                box2.position.y -= 1;
             }
         }
 
