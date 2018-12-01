@@ -143,6 +143,7 @@ function init() {
         if(text) {
             text.geometry.parameters.text = time;
         }
+        console.log(text.geometry.parameters.text);
         // 立方体を動かす
         const length = boxList.length;
         for (let i = 0; i < length; i++) {
