@@ -142,7 +142,7 @@ function init() {
         contoroller = navigator.getGamepads()[0];
         if(text) {
             text.geometry.parameters.text = time;
-            scene.add(text);
+            scene.add(text.position.z);
             console.log(text.geometry.parameters.text);
             text.position.z -= 1;
         }
