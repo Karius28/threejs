@@ -86,7 +86,7 @@ function init() {
         // フォントのロード
         loader.load( 'fonts/optimer_regular.typeface.json', function ( font ) {
             // ここにフォントを読み込んだあとの処理を記述
-            const textGeometry = new THREE.TextGeometry( String(navigator.getGamepads()), {
+            let textGeometry = new THREE.TextGeometry( 'aaaaaaaaaaa', {
                 font: font,
                 size: 100.0,
                 height: 30,
