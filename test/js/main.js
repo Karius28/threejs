@@ -97,9 +97,9 @@ function init() {
             } );
 
             console.log(navigator.getGamepads());
-            textGeometry.x = 100;
-            textGeometry.y = 100;
-            textGeometry.z = 100;
+            textGeometry.position.x = 100;
+            textGeometry.position.y = 100;
+            textGeometry.position.z = 100;
             const material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
             const text = new THREE.Mesh( textGeometry, material );
             scene.add(text);
