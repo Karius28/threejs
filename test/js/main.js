@@ -105,7 +105,7 @@ function init() {
     const controllerGroup = new THREE.Group();
 
     // 立方体のジオメトリを作成
-    const geometry = new THREE.BoxGeometry(2, 2, 45);
+    const geometry = new THREE.BoxGeometry(2, 2, 300);
     // 立方体のマテリアルを作成
     const material = new THREE.MeshStandardMaterial({color: 0x1ffffff * Math.random(), roughness: 0.1, metalness: 0.5});
     let box = new THREE.Mesh(geometry, material);
@@ -113,15 +113,6 @@ function init() {
     box.position.y = 0;
     box.position.z = -300;
     controllerGroup.add(box);
-
-    // 立方体のジオメトリを作成
-    const geometry2 = new THREE.BoxGeometry(60, 60, 60);
-    // 立方体のマテリアルを作成
-    const material2 = new THREE.MeshStandardMaterial({color: 0x1ffffff * Math.random(), roughness: 0.1, metalness: 0.5});
-    let box2 = new THREE.Mesh(geometry2, material2);
-    box2.position.x = -100;
-    box2.position.y = 100;
-    box2.position.z = -300;
     
     scene.add(controllerGroup);
     scene.add(box2);
@@ -137,13 +128,9 @@ function init() {
             if (pose.orientation !== null) controllerGroup.quaternion.fromArray(pose.orientation);
             if(contoroller.buttons[0].pressed) {
                 // タッチパネル
-                box2.position.x -= 1;
-                setText('touchpannel',globalFont);
             }
             if(contoroller.buttons[1].pressed) {
                 // トリガー
-                box2.position.y -= 1;
-                setText('toriger',globalFont);
             }
         }
 
