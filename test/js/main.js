@@ -58,31 +58,31 @@ function init() {
     }
     const boxList = [];
     // 立方体を作成
-    // {
-    //     // 立方体のジオメトリを作成
-    //     const geometry = new THREE.BoxGeometry(45, 45, 45);
-    //     // 立方体を複数作成しランダムに配置
-    //     const num = 60;
-    //     loop: for (let i = 0; i < num; i++) {
-    //         const px = Math.round((Math.random() - 0.5) * 19) * 50 + 25;
-    //         const pz = Math.round((Math.random() - 0.5) * 19) * 50 + 25;
-    //         for (let j = 0; j < i; j++) {
-    //             const box2 = boxList[j];
-    //             if(box2.position.x === px && box2.position.z === pz){
-    //                 i -= 1;
-    //                 continue loop;
-    //             }
-    //         }
-    //         // 立方体のマテリアルを作成
-    //         const material = new THREE.MeshStandardMaterial({color: 0x1000000 * Math.random(), roughness: 0.1, metalness: 0.5});
-    //         const box = new THREE.Mesh(geometry, material);
-    //         box.position.x = px;
-    //         box.position.y = 25;
-    //         box.position.z = pz;
-    //         scene.add(box);
-    //         boxList.push(box);
-    //     }
-    // }
+    {
+        // 立方体のジオメトリを作成
+        const geometry = new THREE.BoxGeometry(45, 45, 45);
+        // 立方体を複数作成しランダムに配置
+        const num = 60;
+        loop: for (let i = 0; i < num; i++) {
+            const px = Math.round((Math.random() - 0.5) * 19) * 50 + 25;
+            const pz = Math.round((Math.random() - 0.5) * 19) * 50 + 25;
+            for (let j = 0; j < i; j++) {
+                const box2 = boxList[j];
+                if(box2.position.x === px && box2.position.z === pz){
+                    i -= 1;
+                    continue loop;
+                }
+            }
+            // 立方体のマテリアルを作成
+            const material = new THREE.MeshStandardMaterial({color: 0x1000000 * Math.random(), roughness: 0.1, metalness: 0.5});
+            const box = new THREE.Mesh(geometry, material);
+            box.position.x = px;
+            box.position.y = 25;
+            box.position.z = pz;
+            scene.add(box);
+            boxList.push(box);
+        }
+    }
 
     //文字を追加
     {
@@ -91,7 +91,6 @@ function init() {
         // フォントのロード
         loader.load( 'fonts/optimer_regular.typeface.json', function ( font ) {
             globalFont = font;
-            // ここにフォントを読み込んだあとの処理を記述
         } );
     }
     // レンダラーにループ関数を登録
@@ -102,15 +101,18 @@ function init() {
 
     let time = 0;
 
+    // コントローラーレーザー格納用group
+    const controllerGroup = new THREE.Group();
+
     // 立方体のジオメトリを作成
-    const geometry = new THREE.BoxGeometry(45, 45, 45);
+    const geometry = new THREE.BoxGeometry(2, 2, 45);
     // 立方体のマテリアルを作成
     const material = new THREE.MeshStandardMaterial({color: 0x1ffffff * Math.random(), roughness: 0.1, metalness: 0.5});
     let box = new THREE.Mesh(geometry, material);
     box.position.x = 0;
-    box.position.y = 100;
+    box.position.y = 0;
     box.position.z = -300;
-    scene.add(box);
+    controllerGroup.add(box);
 
     // 立方体のジオメトリを作成
     const geometry2 = new THREE.BoxGeometry(60, 60, 60);
@@ -120,6 +122,8 @@ function init() {
     box2.position.x = -100;
     box2.position.y = 100;
     box2.position.z = -300;
+    
+    scene.add(controllerGroup);
     scene.add(box2);
     
     // 毎フレーム時に実行されるループイベント
@@ -128,8 +132,9 @@ function init() {
         contoroller = navigator.getGamepads()[0];
         if (contoroller) {
             const pose = contoroller.pose;
-            if(pose.position !== null) box.position.fromArray.fromArray(pose.position);
-            if (pose.orientation !== null) box.quaternion.fromArray(pose.orientation);
+            // 3dofなのでpositionは取得できない
+            // if(pose.position !== null) box.position.fromArray.fromArray(pose.position);
+            if (pose.orientation !== null) controllerGroup.quaternion.fromArray(pose.orientation);
             if(contoroller.buttons[0].pressed) {
                 // タッチパネル
                 box2.position.x -= 1;
@@ -142,16 +147,16 @@ function init() {
             }
         }
 
-
         // if(globalFont && time % 20 === 0) {
         //     scene.remove(globalText);
         //     setText(String(contoroller),globalFont);
         // }
+
         // 立方体を動かす
-        // const length = boxList.length;
-        // for (let i = 0; i < length; i++) {
-        //     boxList[i].position.y = 125 + 100 * Math.cos(time * 0.0005 * i + i / 10);
-        // }
+        const length = boxList.length;
+        for (let i = 0; i < length; i++) {
+            boxList[i].position.y = 125 + 100 * Math.cos(time * 0.0005 * i + i / 10);
+        }
         
         // レンダリング
         renderer.render(scene, camera);
