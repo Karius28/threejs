@@ -105,14 +105,17 @@ function init() {
     const controllerGroup = new THREE.Group();
 
     // 立方体のジオメトリを作成
-    const geometry = new THREE.BoxGeometry(2, 2, 300);
+    const geometry = new THREE.BoxGeometry(2, 2, 500);
     // 立方体のマテリアルを作成
     const material = new THREE.MeshStandardMaterial({color: 0x1ffffff * Math.random(), roughness: 0.1, metalness: 0.5});
     let box = new THREE.Mesh(geometry, material);
     box.position.x = 0;
     box.position.y = 0;
-    box.position.z = -300;
+    box.position.z = -400;
     controllerGroup.add(box);
+
+    // レイキャスト
+    const raycaster = new THREE.Raycaster();
     
     scene.add(controllerGroup);
     scene.add(box2);
@@ -127,7 +130,12 @@ function init() {
             // if(pose.position !== null) box.position.fromArray.fromArray(pose.position);
             if (pose.orientation !== null) controllerGroup.quaternion.fromArray(pose.orientation);
             if(contoroller.buttons[0].pressed) {
+                let intersects = raycaster.intersectObjects(scene.children);
                 // タッチパネル
+                raycaster.setFromCamera(mouse, pose.orientation);
+                for ( let i = 0; i < intersects.length; i++ ) {
+                    intersects[i].object.material.color.set(0xff0000);
+                }
             }
             if(contoroller.buttons[1].pressed) {
                 // トリガー
