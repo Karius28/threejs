@@ -129,17 +129,17 @@ function init() {
             // 3dofなのでpositionは取得できない
             // if(pose.position !== null) box.position.fromArray.fromArray(pose.position);
             if (pose.orientation !== null) controllerGroup.quaternion.fromArray(pose.orientation);
-            if(contoroller.buttons[0].pressed) {
-                let intersects = raycaster.intersectObjects(scene.children);
-                // タッチパネル
-                raycaster.setFromCamera(mouse, pose.orientation);
-                for ( let i = 0; i < intersects.length; i++ ) {
-                    intersects[i].object.material.color.set(0xff0000);
-                }
-            }
-            if(contoroller.buttons[1].pressed) {
-                // トリガー
-            }
+            // if(contoroller.buttons[0].pressed) {
+            //     let intersects = raycaster.intersectObjects(scene.children);
+            //     // タッチパネル
+            //     raycaster.set(mouse, pose.orientation);
+            //     for ( let i = 0; i < intersects.length; i++ ) {
+            //         intersects[i].object.material.color.set(0xff0000);
+            //     }
+            // }
+            // if(contoroller.buttons[1].pressed) {
+            //     // トリガー
+            // }
         }
 
         // if(globalFont && time % 20 === 0) {
